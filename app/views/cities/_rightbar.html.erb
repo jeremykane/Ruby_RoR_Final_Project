@@ -1,0 +1,33 @@
+Color Theme
+
+<div>
+  <% if session[:theme].nil?%>
+    <button class="selected"><%= link_to "Black", theme_path(1) , :method => :post%></button>
+  
+    <button><%= link_to "Grey", theme_path(2) , :method => :post%></button>
+  
+    <button><%= link_to "Blue", theme_path(3) , :method => :post%></button>
+  <% elsif session[:theme].include? "1"%>
+    <button class="selected"><%= link_to "Black", theme_path(1) , :method => :post%></button>
+  
+    <button><%= link_to "Grey", theme_path(2) , :method => :post%></button>
+  
+    <button><%= link_to "Blue", theme_path(3) , :method => :post%></button>
+  <% elsif session[:theme].include? "2"%>
+    <button><%= link_to "Black", theme_path(1) , :method => :post%></button>
+  
+    <button class="selected"><%= link_to "Grey", theme_path(2) , :method => :post%></button>
+  
+    <button><%= link_to "Blue", theme_path(3) , :method => :post%></button>
+  
+  <% elsif session[:theme].include? "3"%>
+    <button><%= link_to "Black", theme_path(1) , :method => :post%></button>
+  
+    <button><%= link_to "Grey", theme_path(2) , :method => :post%></button>
+  
+    <button class="selected"><%= link_to "Blue", theme_path(3) , :method => :post%></button>
+  <% end %>
+
+</div>
+24 Hour / 12 Hour Clock Format
+<button type="btn btn-primary"><%= link_to "Toggle", timeview_path , :method => :post%></button>

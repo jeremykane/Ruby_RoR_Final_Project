@@ -1,0 +1,95 @@
+<table class="table">
+    <tbody>
+    <% @cities.each do |city| %>
+        <%
+        Time.zone = @default_city.first.name
+        default_time = Time.zone.now
+        city_name = city.name.slice(0,1).capitalize + city.name.slice(1..-1)
+        Time.zone = city_name
+        city_time = Time.zone.now
+        time_dif = city_time.hour - default_time.hour
+        if default_time.day > city_time.day
+            time_dif = -24 + time_dif 
+        elsif default_time.day < city_time.day
+            time_dif = 24 - time_dif
+        end
+
+        time_dif_str = ""
+        if time_dif > 0
+            time_dif_str = "+"+time_dif.to_s
+        else
+            time_dif_str = time_dif
+        end
+        day_status = "Today"
+        if default_time.day > city_time.day
+            day_status = "Yesterday"
+        elsif default_time.day < city_time.day
+            day_status = "Tomorrow"
+        end
+        %>
+        <% if city.default_city%>
+        <tr>
+            <td><%= city.name %></td>
+            <td>
+            <p>
+                <% if session[:ampm]%>
+                    <%= city_time.to_s(:time)%>
+                <% else %>
+                    <%= DateTime.parse(city_time.to_s).strftime("%I:%M %p")%>
+                <% end %>
+                <%= link_to raw(fa_icon "times"), city, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-button" %>
+            </p>
+            <p>
+                Today
+                <%=
+                    if city_time.hour >= 9 && city_time.hour < 18 
+                        render 'cities/icons/businesstime'
+                    elsif city_time.hour >= 18 && city_time.hour < 20
+                        render 'cities/icons/businessovertime'
+                    elsif city_time.hour >= 20 && city_time.hour < 23 || city_time.hour >=8 && city_time.hour < 9
+                        render 'cities/icons/personaltime'
+                    else
+                        render 'cities/icons/sleepingtime'
+                    end
+                %>
+            </p>
+            </td>
+        </tr>
+        <% else %>
+        <tr>
+            <td>
+                <p><%= city.name%></p>
+                <p><%= time_dif_str%></p>
+            </td>
+            <td>
+                <% if session[:ampm]%>
+                    <%= city_time.to_s(:time)%>
+                <% else %>
+                    <%= DateTime.parse(city_time.to_s).strftime("%I:%M %p")%>
+                <% end %>
+                <%= link_to raw(fa_icon "times"), city, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-button" %>
+                <p>
+                <%= day_status%>
+                <%=
+                    if city_time.hour >= 9 && city_time.hour < 18 
+                        render 'cities/icons/businesstime'
+                    elsif city_time.hour >= 18 && city_time.hour < 20
+                        render 'cities/icons/businessovertime'
+                    elsif city_time.hour >= 20 && city_time.hour < 23 || city_time.hour >=8 && city_time.hour < 9
+                        render 'cities/icons/personaltime'
+                    else
+                        render 'cities/icons/sleepingtime'
+                    end
+                %>
+                </p>
+                
+            </td>
+        </tr>
+        <% end%>
+
+
+
+    <% end %>
+    </tbody>
+    </table>
+    <%= link_to raw(fa_icon "plus"), new_city_path , class:"new-button"%>

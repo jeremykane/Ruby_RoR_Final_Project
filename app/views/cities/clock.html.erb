@@ -1,0 +1,30 @@
+<div class = "container">
+    <h1> Clock+ </h1>
+
+    <p> Clock+ built by Jeremy Kane - 
+    s3700178@student.rmit.edu.au - Distinciton-level - Wed 18:30-20:30 
+    Tutorial (Alex) </p>
+
+    <% if session[:theme].nil?%>
+        <div class="myrow-black">
+    <% elsif session[:theme].include? "1"%>
+        <div class="myrow-black">
+    <% elsif session[:theme].include? "2"%>
+        <div class="myrow-grey">
+    <% elsif session[:theme].include? "3"%>
+        <div class="myrow-blue">
+    <% end %>
+
+        <div id="left">
+            <%= render 'cities/leftbar'%>
+        </div>
+        <div id="middle">
+            <%= render 'cities/centerbar'%>
+        </div>
+        <div id="right">
+            <%= render 'cities/rightbar'%>
+        </div>
+    </div>
+
+    <%= @found%>
+</div>

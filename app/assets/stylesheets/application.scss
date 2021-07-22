@@ -1,0 +1,198 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+//= require bootstrap-sprockets
+//= require_tree .
+//= require_self
+
+@mixin box_sizing {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* miscellaneous */
+.debug_dump{
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 45 px;
+    @include box_sizing;
+}
+/* universal */
+
+* {
+    margin:0;
+    padding:0;
+    font-family: FontAwesome !important;
+}
+
+body{
+    background-color: rgba(0, 1, 4, 0.796);
+    color:white;
+    text-align:center;
+}
+
+footer{
+    background-color: rgba(106, 108, 111, 0.796);
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.container{
+    height:100%;
+    width:90%;   
+}
+
+#left, #middle, #right{
+    display:inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: center;
+}
+
+#left,#right{
+    width:24.1%;
+    text-align:left;
+}
+
+#right{
+    float:center;
+    margin-left:5px;
+}
+
+#middle{
+    width:50%;
+    background-color: rgb(91, 91, 91);
+    border-radius: 0px 0px 0px 0px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+    ;
+    vertical-align:middle!important;
+    padding: 25px;
+}
+
+body {
+    float:center;
+    padding-top: 60px;
+}
+
+table {
+    float:center;
+    text-align:center;
+}
+
+.myrow-black{
+    overflow:hidden;
+    width: 100%;
+    display:inline-block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: rgba(29, 29, 29, 0.8);
+    border-radius: 25px 25px 25px 25px;
+    box-shadow: 0px 7px rgba(0,0,0,0.4);
+    padding: 3%;
+}
+
+.myrow-grey{
+    overflow:hidden;
+    width: 100%;
+    display:inline-block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 25px 25px 25px 25px;
+    box-shadow: 0px 7px rgba(0,0,0,0.4);
+    color:black!important;
+    padding: 3%;
+}
+
+.myrow-blue{
+    overflow:hidden;
+    width: 100%;
+    display:inline-block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: rgba(16, 0, 87, 0.8);
+    border-radius: 25px 25px 25px 25px;
+    box-shadow: 0px 7px rgba(0,0,0,0.4);
+    padding: 3%;
+}
+
+.mycol{
+    width:30%;
+    background-color:white;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#businesstime{
+    background-color: green;
+}
+
+#businessovertime{
+    background-color: yellow;
+}
+
+#personaltime{
+    background-color: red;
+}
+
+#sleeping time{
+    background-color: #bbb;
+}
+
+#left li{
+    list-style-type:none;
+}
+
+.delete-button{
+    color:rgb(91, 91, 91);
+    display:inline-block;
+    float:right;
+    vertical-align: top;
+}
+
+.delete-button:hover{
+    color:white;
+    display:inline-block;
+}
+
+.new-button{
+    color:white!important;
+}
+
+input, textarea, select, .undeditable-input{
+    border : 1 px solid #bbb;
+    width : 100%;
+    margin-bottom: 15px;
+    @include box_sizing;
+}
+
+input {
+    height: auto !important;
+    color:black;
+}
+
+/* forms */
+
+.field_with_errors {
+    @extend .has-error;
+    .form-control {
+        color: $state-danger-text;
+    }
+}
+
+.selected{
+    background-color: orange!important;
+}

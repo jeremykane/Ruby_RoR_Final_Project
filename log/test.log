@@ -1,0 +1,546 @@
+  [1m[35m (44.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "myapp_test"[0m
+  [1m[35m (179.8ms)[0m  [1m[35mCREATE DATABASE "myapp_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cities" CASCADE[0m
+  [1m[35m (21.4ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying, "default_city" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200612023345)[0m
+  [1m[35m (26.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2020-06-12 07:43:32.502473"], ["updated_at", "2020-06-12 07:43:32.502473"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "cities" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "cities";
+INSERT INTO "cities" ("id", "name", "default_city", "created_at", "updated_at") VALUES (980190962, 'MyString', FALSE, '2020-06-12 07:43:32.627669', '2020-06-12 07:43:32.627669'), (298486374, 'MyString', FALSE, '2020-06-12 07:43:32.627669', '2020-06-12 07:43:32.627669')[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "cities" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+SessionsControllerTest: test_should_get_new
+-------------------------------------------
+Started GET "/sessions/new" for 127.0.0.1 at 2020-06-12 17:43:32 +1000
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 4677ms (Views: 4671.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_create_city
+---------------------------------------------
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started POST "/cities" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#create as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "default_city", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "MyString"], ["default_city", false], ["created_at", "2020-06-12 07:43:37.523847"], ["updated_at", "2020-06-12 07:43:37.523847"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190963
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" ORDER BY "cities"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+CitiesControllerTest: test_should_destroy_city
+----------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started DELETE "/cities/980190962" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cities" WHERE "cities"."id" = $1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities
+Completed 302 Found in 2ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+CitiesControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962/edit" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/edit.html.erb within layouts/application
+  Rendered cities/_form.html.erb (62.0ms)
+  Rendered cities/edit.html.erb within layouts/application (64.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 71ms (Views: 68.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#index as HTML
+  Rendering cities/index.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  Rendered cities/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_update_city
+---------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/cities/980190962" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#update as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190962
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+CitiesControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/new" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#new as HTML
+  Rendering cities/new.html.erb within layouts/application
+  Rendered cities/_form.html.erb (1.0ms)
+  Rendered cities/new.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_show_city
+-------------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962" for 127.0.0.1 at 2020-06-12 17:43:37 +1000
+Processing by CitiesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/show.html.erb within layouts/application
+  Rendered cities/show.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+ClockControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_Index
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "cities" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "cities";
+INSERT INTO "cities" ("id", "name", "default_city", "created_at", "updated_at") VALUES (980190962, 'MyString', FALSE, '2020-06-12 07:44:07.949039', '2020-06-12 07:44:07.949039'), (298486374, 'MyString', FALSE, '2020-06-12 07:44:07.949039', '2020-06-12 07:44:07.949039')[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "cities" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+SessionsControllerTest: test_should_get_new
+-------------------------------------------
+Started GET "/sessions/new" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 266ms (Views: 260.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_update_city
+---------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/cities/980190962" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#update as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190962
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#index as HTML
+  Rendering cities/index.html.erb within layouts/application
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  Rendered cities/index.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_create_city
+---------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started POST "/cities" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#create as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "default_city", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "MyString"], ["default_city", false], ["created_at", "2020-06-12 07:44:08.400819"], ["updated_at", "2020-06-12 07:44:08.400819"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190963
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" ORDER BY "cities"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+CitiesControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962/edit" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/edit.html.erb within layouts/application
+  Rendered cities/_form.html.erb (102.9ms)
+  Rendered cities/edit.html.erb within layouts/application (105.6ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 111ms (Views: 107.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+CitiesControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/new" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#new as HTML
+  Rendering cities/new.html.erb within layouts/application
+  Rendered cities/_form.html.erb (1.1ms)
+  Rendered cities/new.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+CitiesControllerTest: test_should_destroy_city
+----------------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started DELETE "/cities/980190962" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cities" WHERE "cities"."id" = $1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities
+Completed 302 Found in 2ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_show_city
+-------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962" for 127.0.0.1 at 2020-06-12 17:44:08 +1000
+Processing by CitiesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/show.html.erb within layouts/application
+  Rendered cities/show.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "cities" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.4ms)[0m  [1m[31mDELETE FROM "cities";
+INSERT INTO "cities" ("id", "name", "default_city", "created_at", "updated_at") VALUES (980190962, 'MyString', FALSE, '2020-06-12 08:33:28.451248', '2020-06-12 08:33:28.451248'), (298486374, 'MyString', FALSE, '2020-06-12 08:33:28.451248', '2020-06-12 08:33:28.451248')[0m
+  [1m[35m (12.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "cities" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+SessionsControllerTest: test_should_get_new
+-------------------------------------------
+Started GET "/sessions/new" for 127.0.0.1 at 2020-06-12 18:33:28 +1000
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 4501ms (Views: 4494.8ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+CitiesControllerTest: test_should_destroy_city
+----------------------------------------------
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started DELETE "/cities/980190962" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cities" WHERE "cities"."id" = $1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#index as HTML
+  Rendering cities/index.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  Rendered cities/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 9ms (Views: 5.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+CitiesControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/new" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#new as HTML
+  Rendering cities/new.html.erb within layouts/application
+  Rendered cities/_form.html.erb (77.6ms)
+  Rendered cities/new.html.erb within layouts/application (80.0ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 85ms (Views: 82.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_show_city
+-------------------------------------------
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/show.html.erb within layouts/application
+  Rendered cities/show.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_update_city
+---------------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/cities/980190962" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#update as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190962
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+CitiesControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962/edit" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/edit.html.erb within layouts/application
+  Rendered cities/_form.html.erb (2.0ms)
+  Rendered cities/edit.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 8ms (Views: 5.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_create_city
+---------------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started POST "/cities" for 127.0.0.1 at 2020-06-12 18:33:33 +1000
+Processing by CitiesController#create as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "default_city", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "MyString"], ["default_city", false], ["created_at", "2020-06-12 08:33:33.321679"], ["updated_at", "2020-06-12 08:33:33.321679"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190963
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" ORDER BY "cities"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "cities" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.4ms)[0m  [1m[31mDELETE FROM "cities";
+INSERT INTO "cities" ("id", "name", "default_city", "created_at", "updated_at") VALUES (980190962, 'MyString', FALSE, '2020-06-12 10:56:04.333644', '2020-06-12 10:56:04.333644'), (298486374, 'MyString', FALSE, '2020-06-12 10:56:04.333644', '2020-06-12 10:56:04.333644')[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "cities" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_create_city
+---------------------------------------------
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started POST "/cities" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#create as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "default_city", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "MyString"], ["default_city", false], ["created_at", "2020-06-12 10:56:04.537785"], ["updated_at", "2020-06-12 10:56:04.537785"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190963
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" ORDER BY "cities"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+CitiesControllerTest: test_should_destroy_city
+----------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+Started DELETE "/cities/980190962" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cities" WHERE "cities"."id" = $1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cities"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+CitiesControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962/edit" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/edit.html.erb within layouts/application
+  Rendered cities/_form.html.erb (76.7ms)
+  Rendered cities/edit.html.erb within layouts/application (80.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 96ms (Views: 93.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_show_city
+-------------------------------------------
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/980190962" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering cities/show.html.erb within layouts/application
+  Rendered cities/show.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 5ms (Views: 1.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+CitiesControllerTest: test_should_update_city
+---------------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/cities/980190962" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#update as HTML
+  Parameters: {"city"=>{"default_city"=>"false", "name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/cities/980190962
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+CitiesControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#index as HTML
+  Rendering cities/index.html.erb within layouts/application
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  Rendered cities/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+CitiesControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT  "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/cities/new" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by CitiesController#new as HTML
+  Rendering cities/new.html.erb within layouts/application
+  Rendered cities/_form.html.erb (1.2ms)
+  Rendered cities/new.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+SessionsControllerTest: test_should_get_new
+-------------------------------------------
+Started GET "/sessions/new" for 127.0.0.1 at 2020-06-12 20:56:04 +1000
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
